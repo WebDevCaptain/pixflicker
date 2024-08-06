@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "build:wasm": "wasm-pack build --target web && cp -r pkg src/",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy:github": "gh-pages -d dist"
   },
   "dependencies": {
     "vite-plugin-top-level-await": "^1.4.2",
@@ -15,6 +16,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.5",
+    "gh-pages": "^6.1.1",
     "vite": "^5.3.4",
     "vite-plugin-wasm": "^3.3.0"
   }
