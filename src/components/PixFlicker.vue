@@ -1,6 +1,11 @@
 <script setup>
-import { reactive, watch } from "vue";
-import init, { greet } from "/pkg/pixflicker.js";
+import { reactive, watch, onMounted } from "vue";
+import init, { grayscale } from "/pkg/pixflicker.js";
+
+onMounted(async () => {
+  console.log("Mounted pixflicker");
+  await init();
+});
 
 const images = reactive({
   source: {
@@ -11,14 +16,20 @@ const images = reactive({
   },
 });
 
-watch(images, () => {
-  console.log("files", images.source.url);
+watch(images.source, (newSource) => {
+  const fullUrl = newSource.url;
+  const strippedUrl = fullUrl.replace(
+    /^data:image\/(jpeg|jpg|png|webp);base64,/,
+    ""
+  );
+  console.log(strippedUrl);
+
+  const modifiedImgUrl = grayscale(strippedUrl);
+  images.modified.url = modifiedImgUrl;
+  // console.log(modifiedImgUrl);
 });
 
 async function onFileChange(event) {
-  await init();
-  greet("Web Assembly initialized");
-
   const files = event.target.files;
 
   if (!files || !files.length) {
