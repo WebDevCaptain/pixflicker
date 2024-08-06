@@ -1,0 +1,21 @@
+{
+  "name": "pixflicker",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "build:wasm": "wasm-pack build --target web && cp -r pkg src/",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vite-plugin-top-level-await": "^1.4.2",
+    "vue": "^3.4.31"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.5",
+    "vite": "^5.3.4",
+    "vite-plugin-wasm": "^3.3.0"
+  }
+}
